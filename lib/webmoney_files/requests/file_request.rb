@@ -11,6 +11,12 @@ module WebmoneyFiles
         WebmoneyFiles::Response.result(response)
       end
 
+      def get_file_properties(id)
+        url_path = "/files/#{id}.json"
+        response = connection[url_path].get()
+        WebmoneyFiles::Response.result(response)['object']
+      end
+
       def delete(id)
         response = connection['folders/bulk.json'].patch({
           operation: 'delete',
